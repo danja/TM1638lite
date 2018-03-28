@@ -5,6 +5,8 @@ Install by copying the TM1638 directory under your Arduino libraries folder.
 
 For use, see examples/demo.
 
+![pic of cards](https://github.com/danja/TM1638lite/blob/master/pic.jpg?raw=true)
+
 The TM1638's power should go to 3.3v and ground on the Arduino. Its strobe, clock and data pins should be connected to data I/O pins on the Arduino (a good choice is 4, 7, 8). These values should be sent to the constructor of the TM1638 class.
 
 ## From TM1638.h :
