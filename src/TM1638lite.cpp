@@ -1,7 +1,14 @@
 #include "Arduino.h"
 #include "TM1638lite.h"
 
+uint8_t STROBE_IO;
+uint8_t DATA_IO;
+uint8_t CLOCK_IO;
+
 TM1638lite::TM1638lite(uint8_t strobe, uint8_t clock, uint8_t data) {
+  STROBE_IO = strobe;
+  DATA_IO = data;
+  CLOCK_IO = clock;
   pinMode(strobe, OUTPUT);
   pinMode(clock, OUTPUT);
   pinMode(data, OUTPUT);
