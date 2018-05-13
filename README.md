@@ -9,7 +9,9 @@ Here's what I've been doing with it : [DOG-1](https://github.com/danja/dog)
 
 ![pic of cards](https://github.com/danja/TM1638lite/blob/master/pic.jpg?raw=true)
 
-The TM1638's power should go to 3.3v and ground on the Arduino. Its strobe, clock and data pins should be connected to data I/O pins on the Arduino (a good choice is 4, 7, 8). These values should be sent to the constructor of the TM1638 class.
+The TM1638's power should go to 3.3v or 5v* and ground on the Arduino. Its strobe, clock and data pins should be connected to data I/O pins on the Arduino (a good choice is 4, 7, 8). These values should be sent to the constructor of the TM1638 class.
+
+* **because it worked fine on 3.3v, I only recently discovered that it's ok on 5v too, and a little brighter**
 
 ## From TM1638.h :
 
