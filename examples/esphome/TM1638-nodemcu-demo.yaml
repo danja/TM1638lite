@@ -24,10 +24,17 @@ binary_sensor:
   - platform: custom
     lambda: |-
       TM1638Component *c = static_cast<TM1638Component *>(const_cast<custom_component::CustomComponentConstructor *>(&tm1638)->get_component(0));
-      return { c->leds};
+      return { c->buttons };
 
     binary_sensors:
-      name: "M1638 buttons"
+      - name: "M1638 buttons 1"
+      - name: "M1638 buttons 2"
+      - name: "M1638 buttons 3"
+      - name: "M1638 buttons 4"
+      - name: "M1638 buttons 5"
+      - name: "M1638 buttons 6"
+      - name: "M1638 buttons 7"
+      - name: "M1638 buttons 8"
 
 
 
@@ -36,7 +43,7 @@ output:
     type: binary
     lambda: |-
       TM1638Component *c = static_cast<TM1638Component *>(const_cast<custom_component::CustomComponentConstructor *>(&tm1638)->get_component(0));
-      return { c->buttons };
+      return { c->leds };
 
     outputs:
       id: tm_buttons
