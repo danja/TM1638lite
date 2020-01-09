@@ -1,0 +1,43 @@
+esphome:
+  name: tm1638_nodemcu_lolin
+  platform: ESP8266
+  board: nodemcuv2
+  includes:
+#    - ../../src/TM1638lite.h
+#    - ../../src/TM1638lite.cpp
+    - TM1638Sensor.h
+  libraries:
+    - TM1638lite
+
+logger:
+
+
+custom_component:
+- lambda: |-
+    static auto my_component = new TM1638Component();
+    App.register_component(my_component);
+    return {my_component};
+  id: tm1638
+
+
+binary_sensor:
+  - platform: custom
+    lambda: |-
+      TM1638Component *c = static_cast<TM1638Component *>(const_cast<custom_component::CustomComponentConstructor *>(&tm1638)->get_component(0));
+      return { c->leds};
+
+    binary_sensors:
+      name: "M1638 buttons"
+
+
+
+output:
+  - platform: custom
+    type: binary
+    lambda: |-
+      TM1638Component *c = static_cast<TM1638Component *>(const_cast<custom_component::CustomComponentConstructor *>(&tm1638)->get_component(0));
+      return { c->buttons };
+
+    outputs:
+      id: tm_buttons
+#      name: "TM1638 led"
