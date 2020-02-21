@@ -9,8 +9,30 @@ esphome:
   libraries:
     - TM1638lite
 
+
+wifi:
+ networks:
+  ssid: "esphassio"
+  bssid: "42:31:3C:DF:4B:43"
+  password: "21212121"
+  hidden: True
+
+
+captive_portal:
+
+# Enable logging
 logger:
 
+# Enable Home Assistant API
+api:
+  password: "chugaister"
+
+ota:
+  password: "chugaister"
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
 
 custom_component:
 - lambda: |-
@@ -38,13 +60,10 @@ binary_sensor:
 
 
 
-output:
-  - platform: custom
-    type: binary
-    lambda: |-
+switch:
+- platform: custom
+  lambda: |-
       TM1638Component *c = static_cast<TM1638Component *>(const_cast<custom_component::CustomComponentConstructor *>(&tm1638)->get_component(0));
       return { c->leds };
-
-    outputs:
-      id: tm_buttons
-#      name: "TM1638 led"
+  switches:
+    name: "tm1638led"
