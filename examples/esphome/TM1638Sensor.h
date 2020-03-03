@@ -1,13 +1,8 @@
 #include "esphome.h"
-//#include "switch.h"
 #include "TM1638lite.h"
 #include <string.h>
 
-
-//esphome::lcd_base::LCDDisplay
-
 using namespace esphome;
-//using namespace esphome::switch_;
 
 class TM1638Component;
 
@@ -68,7 +63,6 @@ class TM1638Component : public PollingComponent, public CustomAPIDevice {
     tm.reset();
 
     tm.displayText(txt);
-//    tm.setLED(0, 1);
 
     register_service(&TM1638Component::on_set_text, "display_text", {"text", "time"});
 
@@ -85,15 +79,9 @@ class TM1638Component : public PollingComponent, public CustomAPIDevice {
   void do_scroll()
   {
 	    if (show_text == 0) {
-	    auto time = id(homeassistant_time).now();
-	    time.strftime(txt, 10, "%T");
-/*            char first = txt[0];
-	    for (int i = 0; i != 7; ++i)
-	    {
-		txt[i] = txt[i+1];
-	    }
-	    txt[7] = first;*/
-	    tm.displayText(txt);
+		    auto time = id(homeassistant_time).now();
+		    time.strftime(txt, 10, "%T");
+		    tm.displayText(txt);
 	    }
 	    else {
 		--show_text;
@@ -101,7 +89,6 @@ class TM1638Component : public PollingComponent, public CustomAPIDevice {
     }
 
   void update() override {
-//  return;
     if (scroll < 0) {
 	scroll = 10;
 	do_scroll();
@@ -113,11 +100,6 @@ class TM1638Component : public PollingComponent, public CustomAPIDevice {
 	ESP_LOGI("tm1651", " update   %d", buttons);
 	btns = buttons;
     }
-//	ESP_LOGI("tm1651", " u   %d", buttons);
-
-    // This is the actual sensor reading logic.
-    //float temperature = bmp.readTemperature();
-    //temperature_sensor->publish_state(temperature);
    --scroll;
   }
   
