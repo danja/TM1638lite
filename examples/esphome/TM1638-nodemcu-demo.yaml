@@ -1,0 +1,64 @@
+esphome:
+  name: tm1638_nodemcu_lolin
+  platform: ESP8266
+  board: nodemcuv2
+  includes:
+    - TM1638Sensor.h
+  libraries:
+    - TM1638lite
+
+
+wifi:
+ networks:
+  ssid: "esphome"
+  password: "12345678"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "chugaister"
+
+ota:
+  password: "chugaister"
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+custom_component:
+- lambda: |-
+    static auto my_component = new TM1638Component();
+    App.register_component(my_component);
+    return {my_component};
+  id: tm1638
+
+
+binary_sensor:
+  - platform: custom
+    lambda: |-
+      TM1638Component *c = static_cast<TM1638Component *>(const_cast<custom_component::CustomComponentConstructor *>(&tm1638)->get_component(0));
+      return { c->buttons };
+
+    binary_sensors:
+      - name: "M1638 buttons 1"
+      - name: "M1638 buttons 2"
+      - name: "M1638 buttons 3"
+      - name: "M1638 buttons 4"
+      - name: "M1638 buttons 5"
+      - name: "M1638 buttons 6"
+      - name: "M1638 buttons 7"
+      - name: "M1638 buttons 8"
+
+
+
+switch:
+- platform: custom
+  lambda: |-
+      TM1638Component *c = static_cast<TM1638Component *>(const_cast<custom_component::CustomComponentConstructor *>(&tm1638)->get_component(0));
+      return { c->leds };
+  switches:
+    name: "tm1638led"
