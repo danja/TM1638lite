@@ -3,8 +3,6 @@ esphome:
   platform: ESP8266
   board: nodemcuv2
   includes:
-#    - ../../src/TM1638lite.h
-#    - ../../src/TM1638lite.cpp
     - TM1638Sensor.h
   libraries:
     - TM1638lite
