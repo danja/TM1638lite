@@ -12,11 +12,8 @@ esphome:
 
 wifi:
  networks:
-  ssid: "esphassio"
-  bssid: "42:31:3C:DF:4B:43"
-  password: "21212121"
-  hidden: True
-
+  ssid: "esphome"
+  password: "12345678"
 
 captive_portal:
 
