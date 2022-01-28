@@ -7,7 +7,7 @@ TM1638lite tm(4, 7, 8);
 void setup() {
 
   tm.reset();
-
+  tm.setBrightness(2);
   tm.displayText("Eh");
   tm.setLED(0, 1);
   

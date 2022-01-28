@@ -52,6 +52,11 @@ uint8_t TM1638lite::readButtons()
   return buttons;
 }
 
+void TM1638lite::setBrightness(uint8_t value)
+{
+  sendCommand(0x88 | (value & 7));
+}
+
 void TM1638lite::setLED(uint8_t position, uint8_t value)
 {
   pinMode(DATA_IO, OUTPUT);
